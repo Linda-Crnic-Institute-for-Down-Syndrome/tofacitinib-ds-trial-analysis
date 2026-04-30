@@ -60,9 +60,10 @@ Human Trisome Project (HTP) datasets used in this study can be obtained from the
 Download each dataset to the appropriate `/data/` directories within each R project.  
 
 Alternatively, HTP datasets can be obtained via the [INCLUDE Data Hub](https://doi.org/10.71738/p0a9-2v09).  
+
 Whole blood RNA-seq data are also available in Gene Expression Omnibus:  
-Clinical trial UPDATE WITH GEO  
-400 HTP participants [GSE190125](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE190125).  
+* Clinical trial UPDATE WITH GEO  
+* 400 HTP participants [GSE190125](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE190125).  
 
 ## Software & Dependencies
 Key packages include:
