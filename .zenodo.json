@@ -1,0 +1,36 @@
+
+{
+  "title": "Analysis of Safety and Efficacy Data: Tofacitinib for Immune Skin Conditions in Down Syndrome",
+  "description": "Code and data-processing workflows supporting the manuscript: “A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy”",
+  "creators": [
+    {
+      "name": "Galbraith, Matthew D.",
+      "affiliation": "Linda Crnic Institute for Down Syndrome, University of Colorado Anschutz",
+      "orcid": "0000-0003-0485-3927"
+    },
+    {
+      "name": "Donovan, Micah D.",
+      "affiliation": "Linda Crnic Institute for Down Syndrome, University of Colorado Anschutz",
+      "orcid": ""
+    },
+    {
+      "name": "Paul Eduthan, Neetha",
+      "affiliation": "Linda Crnic Institute for Down Syndrome, University of Colorado Anschutz",
+      "orcid": ""
+    },
+    {
+      "name": "Espinosa, Joaquin M.",
+      "affiliation": "Linda Crnic Institute for Down Syndrome, University of Colorado Anschutz",
+      "orcid": "0000-0001-9048-1941"
+    }
+  ],
+  "keywords": ["R", "bioinformatics", "Down syndrome", "trisomy 21", "multiomics", "transcriptomics", "metabolomics", "proteomics", "tofacitinib"],
+  "license": "MIT",
+  "upload_type": "software",
+  "funding": [
+    {
+      "agency": "NIH",
+      "grant_number": "R61/R33AR077495, R01AI150305, UM1TR004399, P30CA046934"
+    }
+  ]
+}
