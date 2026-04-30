@@ -103,6 +103,6 @@ A phase 2, open-label, single-arm clinical trial of the safety and efficacy A ph
 Authors, Journal, Year. DOI (UPDATE once available)
 
 **Code**  
-DOI PLACEHOLDER
+[![DOI](https://zenodo.org/badge/1225206789.svg)](https://doi.org/10.5281/zenodo.19906648)
 
 This project is licensed under the MIT License – see the LICENSE file for details.
