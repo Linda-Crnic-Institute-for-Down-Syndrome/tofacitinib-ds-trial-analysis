@@ -333,7 +333,7 @@ htp_IFN_score_16genes |>
 #
 
 
-# 5 Stats ----
+# 5 Endpoint Stats ----
 ## 5.1 Check data distributions ----
 ### 5.1.1 check for outlier values ----
 tofa_IFN_score_unadj_16genes |> 
@@ -615,8 +615,9 @@ list(
 # ggsave(filename = here("plots", paste0(out_file_prefix, "paired_plots_B_2_8_16_40_weeks", ".pdf")), device = cairo_pdf, width = 25, height = 3, units = "in")
 # #
 
+
 # 7 Sina plots - IFN scores  --------
-## 7.2 Baseline vs 2/8/16/40 weeks  ----
+## 7.1 Baseline vs 2/8/16/40 weeks  ----
 tofa_IFN_score_unadj_16genes |> 
   filter(Event_Name %in% c("Baseline", "2 week", "8 week", "16 week", "40 week")) |> 
   filter(!is.na(IFN_score)) |> 
@@ -668,7 +669,7 @@ tofa_IFN_score_unadj_16genes |>
           )
       }
   )
-ggsave(filename = here("plots", paste0(out_file_prefix, "sina_plot_signif_B_2_8_16_40_weeks", ".pdf")), device = cairo_pdf, width = 15, height = 5, units = "in")
+ggsave(filename = here("plots", paste0(out_file_prefix, "sina_plot_B_2_8_16_40_weeks", ".pdf")), device = cairo_pdf, width = 15, height = 5, units = "in")
 #
 
 
@@ -724,15 +725,15 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "sina_diffs_2_8_16_40_we
 #
 
 
-# 12 Mixed effects linear regression models (non-stratified) ----
+# 9 Mixed effects linear regression models (non-stratified) ----
 # Time as a categorical variable
 #   No assumptions about trajectory
 #   Directly compares each visit to baseline
 # Random effects
 #   Handles missing at random (MAR) data.
 #   Accounts for within-subject correlation.
-## 12.2 Set up models ----
-### 12.2.1 Mixed effects LM: Event_name + 1|ParticipantID ----
+## 9.1 Set up models ----
+### 9.1.1 Mixed effects LM: Event_name + 1|ParticipantID ----
 tofa_IFN_scores_lm_mixedParticipantID <- tofa_IFN_score_unadj_16genes |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
@@ -748,7 +749,7 @@ tofa_IFN_scores_lm_mixedParticipantID <- tofa_IFN_score_unadj_16genes |>
     augmented = map(fit, broom.mixed::augment), # see ?broom.mixed:::augment.lme
   )
 #
-### 12.2.2 Mixed effects LM: Sex + Event_name + 1|ParticipantID ----
+### 9.1.2 Mixed effects LM: Sex + Event_name + 1|ParticipantID ----
 tofa_IFN_scores_lm_fixedSex_mixedParticipantID <- tofa_IFN_score_unadj_16genes |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
@@ -764,7 +765,7 @@ tofa_IFN_scores_lm_fixedSex_mixedParticipantID <- tofa_IFN_score_unadj_16genes |
     augmented = map(fit, broom.mixed::augment), # see ?broom.mixed:::augment.lme
   )
 #
-### 12.2.3 Mixed effects LM: Age + Event_name + 1|ParticipantID ----
+### 9.1.3 Mixed effects LM: Age + Event_name + 1|ParticipantID ----
 tofa_IFN_scores_lm_fixedAge_mixedParticipantID <- tofa_IFN_score_unadj_16genes |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
@@ -780,7 +781,7 @@ tofa_IFN_scores_lm_fixedAge_mixedParticipantID <- tofa_IFN_score_unadj_16genes |
     augmented = map(fit, broom.mixed::augment), # see ?broom.mixed:::augment.lme
   )
 #
-### 12.2.4 Mixed effects LM: Sex + Age + Event_name + 1|ParticipantID (PREFERRED) ----
+### 9.1.4 Mixed effects LM: Sex + Age + Event_name + 1|ParticipantID (PREFERRED) ----
 tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID <- tofa_IFN_score_unadj_16genes |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
@@ -797,15 +798,15 @@ tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID <- tofa_IFN_score_unadj_16gene
   )
 #
 
-## 12.3 Compare models ----
-### 12.3.1 AIC/BIC ----
+## 9.2 Compare models ----
+### 9.2.1 AIC/BIC ----
 # Mixed models
 tofa_IFN_scores_lm_mixedParticipantID |> unnest(glanced) |> select(AIC, BIC) # 1292
 tofa_IFN_scores_lm_fixedSex_mixedParticipantID |> unnest(glanced) |> select(AIC, BIC) # 1287; decent improvement
 tofa_IFN_scores_lm_fixedAge_mixedParticipantID |> unnest(glanced) |> select(AIC, BIC) # 1296; no improvement
 tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID |> unnest(glanced) |> select(AIC, BIC) # 1291; minor improvement; PREFERRED
 #
-### 12.3.2 Likelihood ratio tests ----
+### 9.2.2 Likelihood ratio tests ----
 anova(
   tofa_IFN_scores_lm_mixedParticipantID |> pluck("fit", 1),
   tofa_IFN_scores_lm_fixedSex_mixedParticipantID |> pluck("fit", 1),
@@ -826,9 +827,8 @@ anova(
   tidy() # p.value = 0.0987
 #
 
-
-## 12.4 Model results ----
-### 12.4.2 Mixed ParticipantID with fixed SexAge -----
+## 9.3 Model results ----
+### 9.3.2 Mixed ParticipantID with fixed SexAge -----
 tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID |> 
   unnest(tidied) |> 
   select(score_name, group, term, estimate, p.value)
@@ -848,8 +848,8 @@ tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID_results
 #
 
 
-# 13 Mixed effects linear regression models (stratified) ----
-## 13.1 By Sex ----
+# 10 Mixed effects linear regression models (stratified) ----
+## 10.1 By Sex ----
 lm_fixedAge_mixedParticipantID_by_Sex <- tofa_IFN_score_unadj_16genes |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
@@ -876,7 +876,7 @@ lm_fixedAge_mixedParticipantID_by_Sex_results <- lm_fixedAge_mixedParticipantID_
   arrange(level)
 #
 
-## 13.2 By Age group ----
+## 10.2 By Age group ----
 tofa_baseline_age_groups <- tofa_visit_meta_data |> 
   filter(Event_Name == "Baseline") |> 
   mutate(
@@ -916,7 +916,7 @@ lm_fixedSex_mixedParticipantID_by_Age_group_results <- lm_fixedSex_mixedParticip
   arrange(level)
 #
 
-## 13.3 By Obesity ----
+## 10.3 By Obesity ----
 tofa_baseline_obesity <- tofa_baseline_obesity_file |> 
   read_tsv()
 tofa_baseline_obesity |> count(baseline_obesity_status)
@@ -948,7 +948,7 @@ lm_fixedSexAge_mixedParticipantID_by_Obesity_results <- lm_fixedSexAge_mixedPart
   arrange(level)
 #
 
-## 13.4 By COVID ----
+## 10.4 By COVID ----
 # Slightly different models due to testing with different variable at 16 weeks vs 40 weeks
 tofa_covid_history <- tofa_covid_history_file |> 
   read_tsv() |> 
@@ -1017,7 +1017,7 @@ lm_fixedSexAge_mixedParticipantID_by_COVID_results <- lm_fixedSexAge_mixedPartic
 #
 
 
-# 14 Export LM results ----
+# 11 Export LM results ----
 list(
   "LMM results" = list(
     "Overall" = tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID_results,
@@ -1047,7 +1047,7 @@ list(
   export_excel(filename = "LMM_combined_results")
 #
 
-# 15 LM Forest plot(s) ----
+# 12 LM Forest plot(s) ----
 list(
   "Overall" = tofa_IFN_scores_lm_fixedSexAge_mixedParticipantID_results,
   "Sex" = lm_fixedAge_mixedParticipantID_by_Sex_results,
