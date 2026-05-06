@@ -36,8 +36,8 @@ TOFA_RNAseq_IFNscores/
 
 ### Human Trisome Project (HTP) datasets:  
 * Participant-level metadata [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
-* Visit/Event-level metadata; DOI: 10.5281/zenodo.19962380
-* PAXgene whole blood RNAseq data (RPKMs); DOI: 10.5281/zenodo.20044079
+* Visit/Event-level metadata [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
+* PAXgene whole blood RNAseq data (RPKMs) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20044079.svg)](https://doi.org/10.5281/zenodo.20044079)
 These datasets originate from the [Human Trisome Project](https://www.trisome.org/).  
 
 Obtain the required files and place them in the `data/` directory before running the analysis.
