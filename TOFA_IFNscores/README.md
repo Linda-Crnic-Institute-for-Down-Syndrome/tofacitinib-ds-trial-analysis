@@ -28,11 +28,11 @@ TOFA_RNAseq_IFNscores/
 ## Data Sources 
 
 ### Clinical trial (TOFA) datasets:
-* Participant-level metadata; Available on request.
-* Visit/Event-level metadata; Available on request.
-* Baseline obesity status; Available on request.
-* COVID-19 history; Available on request.
-* PAXgene whole blood RNAseq data (RPKMs); DOI: 10.5281/zenodo.19954573
+* Participant-level metadata: Available on request.
+* Visit/Event-level metadata: Available on request.
+* Baseline obesity status: Available on request.
+* COVID-19 history: Available on request.
+* PAXgene whole blood RNAseq data (RPKMs) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19954573.svg)](https://doi.org/10.5281/zenodo.19954573)
 
 ### Human Trisome Project (HTP) datasets:  
 * Participant-level metadata [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
@@ -40,7 +40,7 @@ TOFA_RNAseq_IFNscores/
 * PAXgene whole blood RNAseq data (RPKMs) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20044079.svg)](https://doi.org/10.5281/zenodo.20044079)
 These datasets originate from the [Human Trisome Project](https://www.trisome.org/).  
 
-Obtain the required files and place them in the `data/` directory before running the analysis.
+Obtain the required files and place them in the `data/` directory before running the analysis.  
 The `data/` directory already contains the GENCODE Human Release 33 annotation file.  
 
 ------------------------------------------------------------------------
