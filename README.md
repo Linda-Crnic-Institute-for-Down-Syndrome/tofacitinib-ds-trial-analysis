@@ -44,7 +44,7 @@ tofacitinib-ds-trial-analysis/
 └── README.md              # This README file
 ```
 
-## Analysis Naming Conventions
+## Analysis Naming Conventions / TOC
 PLACEHOLDER  
 
 ## Data Sources
@@ -52,10 +52,10 @@ Clinical trial datasets used in this study can be obtained from:
 PLACEHOLDER  
 
 Human Trisome Project (HTP) datasets used in this study can be obtained from the associated Synapse repository:  
-* [Sample metadata and Co-occurring conditions](https://doi.org/10.7303/syn31488784)
-* [Whole-blood bulk RNA-seq](https://doi.org/10.7303/syn31488780)
-* [LC-MS metabolomics](https://doi.org/10.7303/syn31488782)
-* [MSD plasma immune markers](https://doi.org/10.7303/syn31475487)  
+* [Sample metadata and Co-occurring conditions](https://doi.org/10.7303/syn31488784) UPDATE
+* [Whole-blood bulk RNA-seq](https://doi.org/10.7303/syn31488780)  UPDATE
+* [LC-MS metabolomics](https://doi.org/10.7303/syn31488782)  UPDATE
+* [MSD plasma immune markers](https://doi.org/10.7303/syn31475487)  UPDATE 
 
 Download each dataset to the appropriate `/data/` directories within each R project.  
 
