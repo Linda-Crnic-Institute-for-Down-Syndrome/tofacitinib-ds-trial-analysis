@@ -32,7 +32,7 @@ TOFA_RNAseq_IFNscores/
 * Visit/Event-level metadata: Available on request.
 * Baseline obesity status: Available on request.
 * COVID-19 history: Available on request.
-* PAXgene whole blood RNAseq data (RPKMs): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19954573.svg)](https://doi.org/10.5281/zenodo.19954573) and GEO: [GSE33018](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE330188)
+* PAXgene whole blood RNAseq data (RPKMs): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19954573.svg)](https://doi.org/10.5281/zenodo.19954573) and GEO: [GSE33018](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE330188).  
 
 ### Human Trisome Project (HTP) datasets:  
 * Participant-level metadata: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
