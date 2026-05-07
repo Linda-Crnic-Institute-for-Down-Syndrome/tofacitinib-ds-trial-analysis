@@ -52,7 +52,7 @@ tofacitinib-ds-trial-analysis/
 ### Analysis R Projects
 * AEs - 
 * Clinical Labs -
-* TOFA_IFNscores - Analysis of RNA-seq-based Interferon (IFN) scores.
+* `TOFA_IFNscores` - Analysis of RNA-seq-based Interferon (IFN) scores.
 * TOFA_CKNscores - Analysis of plasma protein-based Cytokine (CKN) scores (MSD platform).
 * TOFA_Metab_AQ - Analysis of plasma endpoint metabolites Absolute Quantitation (AQ) (UHPLC-MS).
 * AutoAbs - 
