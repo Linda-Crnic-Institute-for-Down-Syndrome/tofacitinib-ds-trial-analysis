@@ -12,7 +12,7 @@ Please refer to the top-level `README.md` in the [tofacitinib-ds-trial-analysis]
 
 ## Repository contents  
 ```         
-TOFA_RNAseq_IFNscores/ 
+TOFA_CKNscores/ 
   ├── TOFA_Final_MSD_Cytokine_scores.R     # Main analysis script 
   ├── helper_functions.R    # Custom R functions used in analysis 
   ├── data/                       # Input datasets (not included in repository) 
@@ -42,7 +42,6 @@ TOFA_RNAseq_IFNscores/
 These datasets originate from the [Human Trisome Project](https://www.trisome.org/) and are also available on the [INCLUDE Data Hub](https://portal.includedcc.org).  
 
 Obtain the required files and place them in the `data/` directory before running the analysis.  
-The `data/` directory already contains the GENCODE Human Release 33 annotation file.  
 
 ------------------------------------------------------------------------
 
@@ -63,7 +62,7 @@ Exact versions of all R packages can be found in the renv.lock file.
 1.  Clone the repository.
 
     ```         
-    git clone https://github.com/Linda-Crnic-Institute-for-Down-Syndrome/ds-conditions-multiomics.git
+    git clone https://github.com/Linda-Crnic-Institute-for-Down-Syndrome/tofacitinib-ds-trial-analysis.git
     ```
 
 2.  Change to desired R Project directory and open R project via `.Rproj` file.
