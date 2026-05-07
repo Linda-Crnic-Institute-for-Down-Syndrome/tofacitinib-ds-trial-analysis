@@ -14,9 +14,9 @@ Code and data-processing workflows supporting the manuscript:
 
 ------------------------------------------------------------------------
 
-This repository contains code used to analyse datasets from:  
-  1) a phase 2 clinical trial of Tofacitinib for Immune Skin Conditions in Down Syndrome [NCT04246372](https://clinicaltrials.gov/study/NCT04246372).   
-  2) the [Human Trisome Project](https://www.trisome.org/)  for comparison purposes.  
+This repository contains code used to analyze datasets from:  
+  1) Tofacitinib for Immune Skin Conditions in Down Syndrome, a phase 2 clinical trial [NCT04246372](https://clinicaltrials.gov/study/NCT04246372).   
+  2) The [Human Trisome Project](https://www.trisome.org/) for comparison purposes.  
 
 It includes:
 * R scripts and functions
