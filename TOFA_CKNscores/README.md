@@ -37,7 +37,7 @@ TOFA_CKNscores/
 ### Human Trisome Project (HTP) datasets:  
 * Participant-level metadata: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
 * Visit/Event-level metadata: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
-* Plasma endpoint cytokines data (MSD): [Synapse](https://doi.org/10.7303/syn31475487).  
+* Plasma endpoint cytokines data (MSD): [Synapse 31475487](https://doi.org/10.7303/syn31475487).  
   
 These datasets originate from the [Human Trisome Project](https://www.trisome.org/) and are also available on the [INCLUDE Data Hub](https://portal.includedcc.org).  
 
