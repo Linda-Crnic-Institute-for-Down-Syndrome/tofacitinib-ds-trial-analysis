@@ -3,17 +3,20 @@
 Code and data-processing workflows supporting the manuscript:  
 “A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy”  
 
+------------------------------------------------------------------------
+
 ## Overview
-* [Repository Structure](#repository-structure)
-* [Analysis Naming Conventions](#analysis-naming-conventions)
+* [Repository Structure](#repository-structure-and-table-of_contents)
 * [Data Sources](#data-sources)
 * [Software & Dependencies](#software--dependencies)
 * [R Environment Setup and Running Analyses](#r-environment-setup-and-running-analyses)
 * [Citation & License](#citation--license)
 
+------------------------------------------------------------------------
+
 This repository contains code used to analyse datasets from:  
   1) a phase 2 clinical trial of Tofacitinib for Immune Skin Conditions in Down Syndrome [NCT04246372](https://clinicaltrials.gov/study/NCT04246372).   
-  2) the [Human Trisome Project](https://www.trisome.org/).  
+  2) the [Human Trisome Project](https://www.trisome.org/)  for comparison purposes.  
 
 It includes:
 * R scripts and functions
@@ -22,56 +25,90 @@ It includes:
 * Reproducibility environment (via renv)
 * Documentation for running analyses end-to-end
 
-Each analysis workflow is presented as a self-contained R Project. The goal is to provide a fully reproducible, transparent workflow consistent with open‑science practices.  
+Each analysis workflow is presented as a self-contained R Project within the main repository. The goal is to provide a fully reproducible, transparent workflow consistent with open‑science practices.  
 
+------------------------------------------------------------------------
 
-## Repository Structure
+## Repository Structure and Table of Contents
 
 ```
 tofacitinib-ds-trial-analysis/
 │
 ├── Analysis_1/            # Self-contained R Project directory for specific analysis workflow
+│    ├── Analysis.Rproj          # RStudio project file; double click to open the project in RStudio
 │    ├── Analysis_1.R            # Analysis script
 │    ├── helper_functions.R      # Associated R functions
-│    ├── data/                   # Raw or external data
-│    ├── results/                # Resulting tables, processed data, model outputs
-│    ├── figures/                # Generated visualizations and plots
-│    ├── rdata/                  # Workspace images and RDS objects
-│    ├── renv.lock               # R package versions for reproducibility
+│    ├── data/                   # Directory for raw or external data
+│    ├── results/                # Directory for results tables, processed data, model outputs
+│    ├── figures/                # Directory for visualizations and plots
+│    ├── rdata/                  # Directory for workspace images and RDS objects
+│    ├── renv.lock               # Lists R package versions for reproducibility
 │    └── README.md               # Analysis-specific README
 ├── .zenodo.json           # Metadata for Zenodo DOI registration
 ├── LICENSE.md             # Software license
 └── README.md              # This README file
 ```
 
-## Analysis Naming Conventions / TOC
-PLACEHOLDER  
+### Analysis R Projects
+* AEs - 
+* Clinical Labs -
+* TOFA_IFNscores - Analysis of RNA-seq-based Interferon (IFN) scores.
+* TOFA_CKNscores - Analysis of plasma protein-based Cytokine (CKN) scores (MSD platform).
+* TOFA_Metab_AQ - Analysis of plasma endpoint metabolites Absolute Quantitation (AQ) (UHPLC-MS).
+* AutoAbs - 
+* Skin scores - 
+* Cognition scores - 
+* TOFA_RNAseq_DESeq2 - Analysis of whole blood transcriptomics (RNA-seq).
+* TOFA_Olink - Analysis of plasma proteomics (Olink platform).
+* TOFA_NULISA - Analysis of plasma proteomics (NULISA platform).
+
+------------------------------------------------------------------------
 
 ## Data Sources
-Clinical trial datasets used in this study can be obtained from:  
-PLACEHOLDER  
-
-Human Trisome Project (HTP) datasets used in this study can be obtained from the associated Synapse repository:  
-* [Sample metadata and Co-occurring conditions](https://doi.org/10.7303/syn31488784) UPDATE
-* [Whole-blood bulk RNA-seq](https://doi.org/10.7303/syn31488780)  UPDATE
-* [LC-MS metabolomics](https://doi.org/10.7303/syn31488782)  UPDATE
-* [MSD plasma immune markers](https://doi.org/10.7303/syn31475487)  UPDATE 
-
 Download each dataset to the appropriate `/data/` directories within each R project.  
 
-Alternatively, HTP datasets can be obtained via the [INCLUDE Data Hub](https://doi.org/10.71738/p0a9-2v09).  
+### Clinical trial (TOFA) datasets:
+* Participant-level metadata: Available on request.
+* Visit/Event-level metadata: Available on request.
+* Baseline obesity status: Available on request.
+* COVID-19 history: Available on request.
+* Adverse events reporting data: Available on request.
+* PAXgene whole blood RNAseq data (RPKMs): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19954573.svg)](https://doi.org/10.5281/zenodo.19954573) and GEO: [GSE33018](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE330188).  
+* Plasma endpoint cytokines data (MSD): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20042862.svg)](https://doi.org/10.5281/zenodo.20042862).  
+* Plasma metabolite AQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20046361.svg)](https://doi.org/10.5281/zenodo.20046361).  
+* Plasma metabolite RQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20043706.svg)](https://doi.org/10.5281/zenodo.20043706).  
+* Autoantibodies DATA
+* Skin scores DATA
+* Neuro scores DATA
+* Plasma proteomics data (Olink): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962923.svg)](https://doi.org/10.5281/zenodo.19962923).  
+* Plasma proteomics data (NULISA): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20043773.svg)](https://doi.org/10.5281/zenodo.20043773).  
 
-Whole blood RNA-seq data are also available in Gene Expression Omnibus:  
-* Clinical trial UPDATE WITH GEO  
-* 400 HTP participants [GSE190125](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE190125).  
+
+### Human Trisome Project (HTP) datasets:  
+* Participant-level metadata: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
+* Visit/Event-level metadata: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962380.svg)](https://doi.org/10.5281/zenodo.19962380)
+* PAXgene whole blood RNAseq data (RPKMs): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20044079.svg)](https://doi.org/10.5281/zenodo.20044079) and GEO: [GSE190125](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE190125).  
+* Plasma cytokines data (MSD): [Synapse 31475487](https://doi.org/10.7303/syn31475487). 
+* Plasma metabolite AQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20074289.svg)](https://doi.org/10.5281/zenodo.20074289).   
+* Plasma proteomics data (Olink): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20046326.svg)](https://doi.org/10.5281/zenodo.20046326).  
+* Plasma proteomics data (NULISA: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20043943.svg)](https://doi.org/10.5281/zenodo.20043943).  
+
+
+These datasets originate from the Linda Crnic Institute for Down Syndrome's [Human Trisome Project](https://www.trisome.org/) and are also available on the [INCLUDE Data Hub](https://portal.includedcc.org) [DOI: 10.71738/p0a9-2v09](https://doi.org/10.71738/p0a9-2v09).  
+
+------------------------------------------------------------------------
 
 ## Software & Dependencies
+* [R](https://cran.r-project.org/)
+* [RStudio](https://posit.co/download/rstudio-desktop)
 Key packages include:
 * renv
 * tidyverse  
 * ggplot2  
 
-The renv.lock files within each analysis project directory provide exact package versions.
+The renv.lock files within each analysis project directory contains a full list of packages and versions.
+
+------------------------------------------------------------------------
 
 ## R Environment Setup and Running Analyses
 1. Clone the repository.
@@ -95,6 +132,7 @@ The renv.lock files within each analysis project directory provide exact package
    ```
 4. Follow workflow in analysis script.
 
+------------------------------------------------------------------------
 
 ## Citation & License
 If you use this code, please cite:  
