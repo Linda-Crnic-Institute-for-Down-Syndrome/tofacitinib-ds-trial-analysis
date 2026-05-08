@@ -32,7 +32,7 @@ TOFA_Clinical_Labs/
 * Visit/Event-level metadata; Available on request.
 * Baseline obesity status; Available on request.
 * COVID-19 history; Available on request.
-* Clinical safety labs; DOI: 10.5281/zenodo.20074415
+* Clinical safety labs: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20074415.svg)](https://doi.org/10.5281/zenodo.20074415).  
 
 Obtain the required files and place them in the `data/` directory before running the analysis.  
 
