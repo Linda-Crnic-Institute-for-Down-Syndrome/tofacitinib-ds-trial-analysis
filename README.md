@@ -50,14 +50,14 @@ tofacitinib-ds-trial-analysis/
 ```
 
 ### Analysis R Projects
-* AEs - 
-* Clinical Labs -
+* `TOFA_Adverse_Events` - Analysis of study physician-reported adverse events. 
+* `TOFA_Clinical_Labs` - Analysis of clinical laboratory values.
 * `TOFA_IFNscores` - Analysis of RNA-seq-based Interferon (IFN) scores.
 * `TOFA_CKNscores` - Analysis of plasma protein-based Cytokine (CKN) scores (MSD platform).
 * `TOFA_Metab_AQ` - Analysis of plasma endpoint metabolites Absolute Quantitation (AQ) (UHPLC-MS).
-* AutoAbs - 
-* Skin scores - 
-* Cognition scores - 
+* AutoAbs - PENDING
+* `TOFA_Skin_scores` - Analysis of Dermatological (skin) scores.
+* `TOFA_Neurocognitive` - Analysis of Neurocognitive assessment scores.
 * `TOFA_RNAseq_DESeq2` - Analysis of whole blood transcriptomics (RNA-seq).
 * `TOFA_Olink` - Analysis of plasma proteomics (Olink platform).
 * `TOFA_NULISA` - Analysis of plasma proteomics (NULISA platform).
@@ -78,8 +78,8 @@ Download each dataset to the appropriate `/data/` directories within each R proj
 * Plasma metabolite AQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20046361.svg)](https://doi.org/10.5281/zenodo.20046361).  
 * Plasma metabolite RQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20043706.svg)](https://doi.org/10.5281/zenodo.20043706).  
 * Autoantibodies DATA
-* Skin scores DATA
-* Neuro scores DATA
+* Dermatological (skin) scores: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20077742.svg)](https://doi.org/10.5281/zenodo.20077742)
+* Neurocognitive Assessment scores: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20080323.svg)](https://doi.org/10.5281/zenodo.20080323).
 * Plasma proteomics data (Olink): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962923.svg)](https://doi.org/10.5281/zenodo.19962923).  
 * Plasma proteomics data (NULISA): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20043773.svg)](https://doi.org/10.5281/zenodo.20043773).  
 
