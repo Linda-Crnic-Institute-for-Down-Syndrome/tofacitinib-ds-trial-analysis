@@ -1,4 +1,4 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Cytokine (CKN) scores
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Cytokine (CKN) scores
 
 ## Summary
 

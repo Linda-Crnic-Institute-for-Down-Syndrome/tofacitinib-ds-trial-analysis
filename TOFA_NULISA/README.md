@@ -1,4 +1,4 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of NULISA plasma proteins 
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of NULISA plasma proteins 
 
 ## Summary
 

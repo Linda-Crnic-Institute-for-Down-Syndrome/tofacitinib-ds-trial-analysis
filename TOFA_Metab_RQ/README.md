@@ -1,4 +1,4 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Relative Quantitation (RQ) plasma metabolite data
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Relative Quantitation (RQ) plasma metabolite data
 
 ## Summary
 

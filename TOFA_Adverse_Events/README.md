@@ -1,4 +1,4 @@
-## Title: Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Adverse Events
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Adverse Events
 
 ## Summary
 

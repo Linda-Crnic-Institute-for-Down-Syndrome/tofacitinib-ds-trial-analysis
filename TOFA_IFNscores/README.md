@@ -1,4 +1,4 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Interferon (IFN) scores
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Interferon (IFN) scores
 
 ## Summary
 

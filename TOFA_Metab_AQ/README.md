@@ -1,4 +1,4 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Plasma Endpoint Metabolites Absolute Quantitation (AQ)
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Plasma Endpoint Metabolites Absolute Quantitation (AQ)
 
 ## Summary
 

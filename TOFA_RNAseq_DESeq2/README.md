@@ -1,4 +1,4 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Whole Blood Transcriptome   
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Whole Blood Transcriptome   
 
 ## Summary
 

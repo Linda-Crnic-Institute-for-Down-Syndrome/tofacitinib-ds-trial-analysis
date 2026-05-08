@@ -1,4 +1,4 @@
-## Title: Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Clinical Labs
+# Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Clinical Labs
 
 ## Summary
 
