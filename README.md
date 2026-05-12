@@ -1,7 +1,7 @@
 # Analysis of Safety and Efficacy Data: Tofacitinib for Immune Skin Conditions in Down Syndrome 
 
 Code and data-processing workflows supporting the manuscript:  
-“A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy”  
+“A phase 2, open-label, single-arm clinical trial of the safety and efficacy of the JAK1/3 inhibitor tofacitinib in Down syndrome”  
 
 ------------------------------------------------------------------------
 
@@ -55,7 +55,6 @@ tofacitinib-ds-trial-analysis/
 * `TOFA_IFNscores` - Analysis of RNA-seq-based Interferon (IFN) scores.
 * `TOFA_CKNscores` - Analysis of plasma protein-based Cytokine (CKN) scores (MSD platform).
 * `TOFA_Metab_AQ` - Analysis of plasma endpoint metabolites Absolute Quantitation (AQ) (UHPLC-MS).
-* AutoAbs - PENDING
 * `TOFA_Skin_scores` - Analysis of Dermatological (skin) scores.
 * `TOFA_Neurocognitive` - Analysis of Neurocognitive assessment scores.
 * `TOFA_RNAseq_DESeq2` - Analysis of whole blood transcriptomics (RNA-seq).
@@ -77,7 +76,6 @@ Download each dataset to the appropriate `/data/` directories within each R proj
 * Plasma endpoint cytokines data (MSD): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20042862.svg)](https://doi.org/10.5281/zenodo.20042862).  
 * Plasma metabolite AQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20046361.svg)](https://doi.org/10.5281/zenodo.20046361).  
 * Plasma metabolite RQ data (UHPLC-MS): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20043706.svg)](https://doi.org/10.5281/zenodo.20043706).  
-* Autoantibodies DATA
 * Dermatological (skin) scores: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20077742.svg)](https://doi.org/10.5281/zenodo.20077742)
 * Neurocognitive Assessment scores: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20080323.svg)](https://doi.org/10.5281/zenodo.20080323).
 * Plasma proteomics data (Olink): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19962923.svg)](https://doi.org/10.5281/zenodo.19962923).  
@@ -99,8 +97,8 @@ These datasets originate from the Linda Crnic Institute for Down Syndrome's [Hum
 ------------------------------------------------------------------------
 
 ## Software & Dependencies
-* [R](https://cran.r-project.org/)
-* [RStudio](https://posit.co/download/rstudio-desktop)
+* [R](https://cran.r-project.org/)  
+* [RStudio](https://posit.co/download/rstudio-desktop)  
 Key packages include:
 * renv
 * tidyverse  
