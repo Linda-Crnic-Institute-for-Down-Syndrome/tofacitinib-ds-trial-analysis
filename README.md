@@ -56,7 +56,7 @@ tofacitinib-ds-trial-analysis/
 * `TOFA_CKNscores` - Analysis of plasma protein-based Cytokine (CKN) scores (MSD platform).
 * `TOFA_Metab_AQ` - Analysis of plasma endpoint metabolites Absolute Quantitation (AQ) (UHPLC-MS).
 * `TOFA_Skin_scores` - Analysis of Dermatological (skin) scores.
-* `TOFA_Neurocognitive` - Analysis of Neurocognitive assessment scores.
+* `TOFA_Neuropsych` - Analysis of Neuropsychological assessment scores.
 * `TOFA_RNAseq_DESeq2` - Analysis of whole blood transcriptomics (RNA-seq).
 * `TOFA_Olink` - Analysis of plasma proteomics (Olink platform).
 * `TOFA_NULISA` - Analysis of plasma proteomics (NULISA platform).
