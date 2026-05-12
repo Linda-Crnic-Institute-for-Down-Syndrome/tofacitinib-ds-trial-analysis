@@ -1,10 +1,10 @@
-## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Neurocognitive assessment scores
+## Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Neuropsychological assessment scores
 
 ## Summary
 
 This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy of the JAK1/3 inhibitor tofacitinib in Down syndrome”.  
 
-This workflow analyzes neurocognitive assessment scores for participants in the clinical trial.  
+This workflow analyzes neuropsychological assessment scores for participants in the clinical trial.  
 
 Please refer to the top-level `README.md` in the `ds-conditions-multiomics/` repository for a full overview of all analyses and general data access instructions.  
 
@@ -12,9 +12,9 @@ Please refer to the top-level `README.md` in the `ds-conditions-multiomics/` rep
 
 ## Repository contents  
 ```         
-TOFA_Final_Neurocognitive/ 
-  ├── TOFA_Neurocognitive.R     # Main analysis script 
-  ├── helper_functions.R    # Custom R functions used in analysis 
+TOFA_Final_Neuropsychological/ 
+  ├── TOFA_Neuropsychological.R   # Main analysis script 
+  ├── helper_functions.R          # Custom R functions used in analysis 
   ├── data/                       # Input datasets (not included in repository) 
   ├── results/                    # Statistical results and summary tables 
   ├── plots/                      # Generated plots 
@@ -32,7 +32,7 @@ TOFA_Final_Neurocognitive/
 * Visit/Event-level metadata; Available on request.
 * Baseline obesity status; Available on request.
 * COVID-19 history; Available on request.
-* Neurocognitive Assessment scores: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20080323.svg)](https://doi.org/10.5281/zenodo.20080323)
+* Neuropsychological Assessment scores: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20080323.svg)](https://doi.org/10.5281/zenodo.20080323)
   
 Obtain the required files and place them in the `data/` directory before running the analysis. 
 

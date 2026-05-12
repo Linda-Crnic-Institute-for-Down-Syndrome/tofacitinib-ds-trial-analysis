@@ -1,5 +1,5 @@
 ################################################
-# Title: Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Neurocognitive Assessment scores
+# Title: Tofacitinib for Immune Skin Conditions in Down Syndrome: Analysis of Neuropsychological Assessment scores
 # Author(s):
 #   - Matthew Galbraith
 # Affiliation(s):
@@ -8,7 +8,7 @@
 ################################################
 
 ### Summary:  
-# Analysis of Neurocognitive Assessment scores.
+# Analysis of Neuropsychological Assessment scores.
 # See README.md for more details.
 #  
 
@@ -18,7 +18,7 @@
 #    * Visit/Event-level metadata; Available on request.
 #    * Baseline obesity status; Available on request.
 #    * COVID-19 history; Available on request.
-#    * Neurocognitive Assessment scores; DOI: 10.5281/zenodo.20080323
+#    * Neuropsychological Assessment scores; DOI: 10.5281/zenodo.20080323
 #
 
 
@@ -65,12 +65,12 @@ tofa_participant_meta_data_file <- here("data/TOFA_Participant_metadata_zenodo_v
 tofa_visit_meta_data_file <- here("data/TOFA_Visit_metadata_zenodo_v1.txt") # Source: Available on request
 tofa_baseline_obesity_file <- here("data/TOFA_Baseline_Obesity_Status_zenodo_v1.txt") # Source: Available on request
 tofa_covid_history_file <- here("data/TOFA_COVID_History_zenodo_v1.txt") # Source: Available on request
-tofo_neurocognitive_scores_file <- here("data/TOFA_Neurocognitive_Endpoint_scores_data_zenodo_v1.txt.gz") # Source: 10.5281/zenodo.20080323
+tofa_neuropsychological_scores_file <- here("data/TOFA_Neuropsychological_Endpoint_scores_data_zenodo_v1.txt.gz") # Source: 10.5281/zenodo.20080323
 #
 # Other parameters:
 standard_colors <- c("Baseline" = "#999999", "2 week" = "#c6dbef", "8 week" = "#9ecae1", "16 week" = "#6baed6", "40 week" = "#4292c6")
 #
-out_file_prefix <- "TOFA_Final_Neurocognitive_" # should match this script title
+out_file_prefix <- "TOFA_Final_neuropsychological_" # should match this script title
 #
 source(here("helper_functions.R")) # load helper functions
 #
@@ -101,27 +101,27 @@ tofa_visit_meta_data |> distinct(ParticipantID) # 43 Participants with samples
 tofa_visit_meta_data |> distinct(VisitID) # 306 Visits/Samples
 #
 
-## 1.2 Read in TOFA Neurocog data ----
-tofo_neurocognitive_scores <- tofo_neurocognitive_scores_file |>
+## 1.2 Read in TOFA Neuropsych data ----
+tofa_neuropsychological_scores <- tofa_neuropsychological_scores_file |>
   read_tsv() |> 
   mutate(
     Event_Name = fct_relevel(Event_Name, c("Baseline", "16 week","40 week")) # set factor levels
   )
 #
-tofo_neurocognitive_scores # 2,185 rows
-tofo_neurocognitive_scores |> distinct(ParticipantID) # 42 Participants
-tofo_neurocognitive_scores |> distinct(VisitID) # 115 VisitIDs
-tofo_neurocognitive_scores |> distinct(Score_name) # 19 scores
+tofa_neuropsychological_scores # 2,185 rows
+tofa_neuropsychological_scores |> distinct(ParticipantID) # 42 Participants
+tofa_neuropsychological_scores |> distinct(VisitID) # 115 VisitIDs
+tofa_neuropsychological_scores |> distinct(Score_name) # 19 scores
 #
 
 ## 1.3 Join with meta data, filter eligible etc, filter to endpoint cytokines ----
-tofo_neurocognitive_scores <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores <- tofa_neuropsychological_scores |> 
   inner_join(tofa_visit_meta_data) |> # returns 2,185 of 2,185 rows
   inner_join(tofa_participant_meta_data) |> # returns 2,185 of 2,185 rows
   filter(Endpoint_eligible == TRUE) # returns 2,185 of 2,185 rows
 #
 ### 1.3.1 ParticipantID vs Event_Name summary ---- 
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   distinct(ParticipantID, VisitID, Event_Name) |> 
   arrange(Event_Name) |> 
   pivot_wider(names_from = Event_Name, values_from = VisitID) |> 
@@ -132,7 +132,7 @@ tofo_neurocognitive_scores |>
 # 2 Endpoint Stats ----
 ## 2.1 Check data distributions ----
 ### 2.1.1 check for outlier values ----
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   mutate(
     extreme = rstatix::is_extreme(Score_value),
     outlier = rstatix::is_outlier(Score_value),
@@ -154,7 +154,7 @@ tofo_neurocognitive_scores |>
   labs(title = "Distributions of Score Values + outliers")
 #
 ### 2.1.2 Calc Differences from baseline ----
-tofo_neurocognitive_16week_diffs <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_16week_diffs <- tofa_neuropsychological_scores |> 
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   filter(!is.na(Score_value)) |> 
   filter(is.finite(Score_value)) |> 
@@ -173,7 +173,7 @@ tofo_neurocognitive_16week_diffs <- tofo_neurocognitive_scores |>
   ) |> 
   ungroup()
 #
-tofo_neurocognitive_40week_diffs <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_40week_diffs <- tofa_neuropsychological_scores |> 
   filter(Event_Name %in% c("Baseline", "40 week")) |> 
   filter(!is.na(Score_value)) |> 
   filter(is.finite(Score_value)) |> 
@@ -193,13 +193,13 @@ tofo_neurocognitive_40week_diffs <- tofo_neurocognitive_scores |>
   ungroup()
 #
 ### 2.1.3 Count extreme outliers in differences ----
-tofo_neurocognitive_16week_diffs |> 
+tofa_neuropsychological_16week_diffs |> 
   count(outlier, extreme)
-tofo_neurocognitive_40week_diffs |> 
+tofa_neuropsychological_40week_diffs |> 
   count(outlier, extreme)
 #
 ### 2.1.4 Plot differences ---- 
-tofo_neurocognitive_16week_diffs |> 
+tofa_neuropsychological_16week_diffs |> 
   ggplot(aes(Score_name, difference, color = Score_name)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_sina(data = . %>% filter(outlier == FALSE & extreme == FALSE), maxwidth = 0.5, color = "grey") +
@@ -216,7 +216,7 @@ tofo_neurocognitive_16week_diffs |>
   ) +
   labs(title = "Distributions of 16 week vs Baseline differences")
 #
-tofo_neurocognitive_40week_diffs |> 
+tofa_neuropsychological_40week_diffs |> 
   ggplot(aes(Score_name, difference, color = Score_name)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_sina(data = . %>% filter(outlier == FALSE & extreme == FALSE), maxwidth = 0.5, color = "grey") +
@@ -234,9 +234,9 @@ tofo_neurocognitive_40week_diffs |>
   labs(title = "Distributions of 40 week vs Baseline differences")
 #
 ### 2.1.5 Check if differences are normally distributed ----
-tofo_neurocognitive_16week_diffs |>
+tofa_neuropsychological_16week_diffs |>
   ggpubr::ggqqplot("difference", title = "Q-Q plot: 16 week differences", facet.by = "Score_name",  scales = "free_y")
-tofo_neurocognitive_40week_diffs |>
+tofa_neuropsychological_40week_diffs |>
   ggpubr::ggqqplot("difference", title = "Q-Q plot: 40 week differences", facet.by = "Score_name",  scales = "free_y")
 #
 
@@ -254,7 +254,7 @@ tofo_neurocognitive_40week_diffs |>
 
 ### 2.2.1 Run paired t tests 16 weeks ----
 # Only 16 week timepoint is tested as a trial endpoint.
-tofo_neurocognitive_Ttest_res_16weeks <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_Ttest_res_16weeks <- tofa_neuropsychological_scores |> 
   arrange(ParticipantID, Event_Name) |> # ensure correct sort order for rstatix::t_test()
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   filter(!is.na(Score_value)) |> 
@@ -283,7 +283,7 @@ tofo_neurocognitive_Ttest_res_16weeks <- tofo_neurocognitive_scores |>
 # mean difference by the standard deviation of the difference, as shown below.
 # Cohen’s formula:
 # d = mean(D)/sd(D), where D is the differences of the paired samples values.
-tofo_neurocognitive_Ttest_effsize_16weeks <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_Ttest_effsize_16weeks <- tofa_neuropsychological_scores |> 
   arrange(ParticipantID, Event_Name) |> # ensure correct sort order for rstatix::cohens_d()
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   filter(!is.na(Score_value)) |> 
@@ -301,21 +301,21 @@ tofo_neurocognitive_Ttest_effsize_16weeks <- tofo_neurocognitive_scores |>
   )
 #
 ### 2.2.3 Compile t test results ----
-tofo_neurocognitive_Ttest_res_16weeks_full <- tofo_neurocognitive_Ttest_res_16weeks |> 
-  inner_join(tofo_neurocognitive_Ttest_effsize_16weeks) |> 
+tofa_neuropsychological_Ttest_res_16weeks_full <- tofa_neuropsychological_Ttest_res_16weeks |> 
+  inner_join(tofa_neuropsychological_Ttest_effsize_16weeks) |> 
   mutate(
     mean_diff = estimate,
   ) |> 
-  inner_join(tofo_neurocognitive_16week_diffs |> summarize(median_diff = median(difference), .by = Score_name)) |> 
+  inner_join(tofa_neuropsychological_16week_diffs |> summarize(median_diff = median(difference), .by = Score_name)) |> 
   select(Assessment, Score_name, mean_diff, median_diff, p, BH_padj, effsize, magnitude, group1, group2, n1, n2, everything()) |> 
   mutate(Assessment = fct_relevel(Assessment, c("leiter", "cantab", "kbit", "ppvt", "sobc", "nepsyii", "promis"))) |> 
   arrange(Assessment, Score_name)
 #
-tofo_neurocognitive_Ttest_res_16weeks_full
+tofa_neuropsychological_Ttest_res_16weeks_full
 #
 ### 2.2.4 Export results ----
 list(
-  "ttest_results" = tofo_neurocognitive_Ttest_res_16weeks_full |> 
+  "ttest_results" = tofa_neuropsychological_Ttest_res_16weeks_full |> 
     select(
       Assessment,
       Score_name,
@@ -341,7 +341,7 @@ list(
 # 3 Paired plots - score values --------
 #
 ## 3.1 Baseline vs. 16 weeks - All ----
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   #
   filter(!is.na(Score_value)) |> 
@@ -399,7 +399,7 @@ tofo_neurocognitive_scores |>
 ggsave(filename = here("plots", paste0(out_file_prefix, "paired_plots_B_16_weeks", ".pdf")), device = cairo_pdf, width = 35, limitsize = FALSE, height = 6, units = "in")
 #
 ## 3.2 Baseline vs. 16 weeks - Leiter ----
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   filter(Assessment == "leiter") |> 
   #
@@ -463,7 +463,7 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "paired_plots_Leiter_B_1
 
 # 4 Sina plots - score values --------
 ## 4.1 Baseline vs. 16 weeks - Leiter ----
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   filter(Assessment == "leiter") |> 
   #
@@ -529,8 +529,8 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "sina_plots_Leiter_B_16_
 # 5 Sina plots - Differences --------
 ## 5.1 Baseline vs. 16 weeks - ALL  ----
 bind_rows(
-  tofo_neurocognitive_16week_diffs |> mutate(Event_Name = "16 week"),
-  tofo_neurocognitive_40week_diffs |> mutate(Event_Name = "40 week")
+  tofa_neuropsychological_16week_diffs |> mutate(Event_Name = "16 week"),
+  tofa_neuropsychological_40week_diffs |> mutate(Event_Name = "40 week")
 ) |> 
   mutate(Event_Name = fct_relevel(Event_Name, c("16 week", "40 week"))) |> 
   #
@@ -599,8 +599,8 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "sina_plots_DIFFS_ENDPOI
 #
 ## 5.2 Baseline vs. 16 weeks - leiter ----
 bind_rows(
-  tofo_neurocognitive_16week_diffs |> mutate(Event_Name = "16 week"),
-  tofo_neurocognitive_40week_diffs |> mutate(Event_Name = "40 week")
+  tofa_neuropsychological_16week_diffs |> mutate(Event_Name = "16 week"),
+  tofa_neuropsychological_40week_diffs |> mutate(Event_Name = "40 week")
 ) |> 
   mutate(Event_Name = fct_relevel(Event_Name, c("16 week", "40 week"))) |> 
   filter(Assessment == "leiter") |> 
@@ -661,7 +661,7 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "sina_plots_leiter_DIFFS
 
 # 6 Dumbbell plots ----
 ### 6.1. 16 weeks ----
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   filter(Event_Name %in% c("Baseline", "16 week")) |> 
   group_by(Score_name) |> 
   group_split() %>%
@@ -745,8 +745,8 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "dumbbell_16_weeks_ENDPO
 #
 ### 9.1 Endpoints 16 weeks vs Baseline ----
 hm_dat_diffs <- bind_rows(
-  tofo_neurocognitive_16week_diffs |> mutate(Event_Name = "16 week"),
-  tofo_neurocognitive_40week_diffs |> mutate(Event_Name = "40 week")
+  tofa_neuropsychological_16week_diffs |> mutate(Event_Name = "16 week"),
+  tofa_neuropsychological_40week_diffs |> mutate(Event_Name = "40 week")
 ) |> 
   inner_join(tofa_participant_meta_data |> select(ParticipantID, Age_consent_years, Sex)) |> 
   mutate(Event_Name = fct_relevel(Event_Name, c("16 week", "40 week"))) |> 
@@ -838,15 +838,15 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "heatmap_improvements_EN
 
 # 10 Baseline scores vs Differences correlations ----
 ## 10.1 Spearman correlations -----
-tofo_neurocognitive_endpoints_spearman <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_endpoints_spearman <- tofa_neuropsychological_scores |> 
   filter(Event_Name == "Baseline") %>% 
   rename(Baseline = Score_value) %>% 
   select(ParticipantID, Score_name, Baseline) |> 
   inner_join(
-    tofo_neurocognitive_16week_diffs |> select(ParticipantID, Assessment, Score_name, diff_16weeks = difference)
+    tofa_neuropsychological_16week_diffs |> select(ParticipantID, Assessment, Score_name, diff_16weeks = difference)
   ) |> 
   left_join(
-    tofo_neurocognitive_40week_diffs |> select(ParticipantID, Assessment, Score_name, diff_40weeks = difference)
+    tofa_neuropsychological_40week_diffs |> select(ParticipantID, Assessment, Score_name, diff_40weeks = difference)
   ) |> 
   nest(data = -c(Assessment, Score_name)) |> 
   mutate(
@@ -854,12 +854,12 @@ tofo_neurocognitive_endpoints_spearman <- tofo_neurocognitive_scores |>
     cor_40weeks = map(data, \(x) rstatix::cor_test(x, Baseline, diff_40weeks, method = "spearman"))
   )
 #
-tofo_neurocognitive_endpoints_spearman |> 
+tofa_neuropsychological_endpoints_spearman |> 
   unnest(cor_16weeks) |> 
   mutate(BH_padj = p.adjust(p, method = "BH")) |>
   arrange(p) |> 
   filter(BH_padj < 0.1)
-tofo_neurocognitive_endpoints_spearman |> 
+tofa_neuropsychological_endpoints_spearman |> 
   unnest(cor_40weeks) |> 
   mutate(BH_padj = p.adjust(p, method = "BH")) |>
   arrange(p) |> 
@@ -868,12 +868,12 @@ tofo_neurocognitive_endpoints_spearman |>
 
 ## 10.2 Heatmap -----
 cor_hm_dat <- bind_rows(
-  tofo_neurocognitive_endpoints_spearman |> 
+  tofa_neuropsychological_endpoints_spearman |> 
     unnest(cor_16weeks) |> 
     select(-c(data, cor_40weeks)) |> 
     mutate(Event_Name = "16 weeks") |> 
     mutate(BH_padj = p.adjust(p, method = "BH")),
-  tofo_neurocognitive_endpoints_spearman |> 
+  tofa_neuropsychological_endpoints_spearman |> 
     unnest(cor_40weeks) |> 
     select(-c(data, cor_16weeks)) |> 
     mutate(Event_Name = "40 weeks") |> 
@@ -912,21 +912,21 @@ cor_hm_dat |>
   tidyHeatmap::layer_asterisk(BH_padj < 0.1) |>
   tidyHeatmap::wrap_heatmap() +
 labs(
-  title = "Neurocognitive Endpoints: Correlation between Baseline and Differences",
+  title = "neuropsychological Endpoints: Correlation between Baseline and Differences",
 )
 ggsave(filename = here("plots", paste0(out_file_prefix, "heatmap_spearman_Baseline_vs_Diffs_", ".pdf")), device = cairo_pdf, width = 4.5, height = 5, units = "in")
 #
 
 ## 10.3 Scatter plots with rho + p -----
-tofo_neurocognitive_scores |> 
+tofa_neuropsychological_scores |> 
   filter(Event_Name == "Baseline") %>% 
   rename(Baseline = Score_value) %>% 
   select(ParticipantID, Score_name, Baseline) |> 
   inner_join(
-    tofo_neurocognitive_16week_diffs |> select(ParticipantID, Assessment, Score_name, diff_16weeks = difference)
+    tofa_neuropsychological_16week_diffs |> select(ParticipantID, Assessment, Score_name, diff_16weeks = difference)
   ) |> 
   left_join(
-    tofo_neurocognitive_40week_diffs |> select(ParticipantID, Assessment, Score_name, diff_40weeks = difference)
+    tofa_neuropsychological_40week_diffs |> select(ParticipantID, Assessment, Score_name, diff_40weeks = difference)
   ) |> 
   ggplot(aes(Baseline, diff_16weeks)) +
   geom_point() +
@@ -948,7 +948,7 @@ ggsave(filename = here("plots", paste0(out_file_prefix, "scatter_16_weeks_Endpoi
 #   Accounts for within-subject correlation.
 ## 11.1 Set up models ----
 ### 11.1.1 Mixed effects LM: Event_name + 1|ParticipantID ----
-tofo_neurocognitive_lm_mixedParticipantID <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_lm_mixedParticipantID <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   filter(Event_Name %in% c("Baseline", "2 week", "8 week", "16 week", "40 week")) |> # keep only timepoints of interest
@@ -964,7 +964,7 @@ tofo_neurocognitive_lm_mixedParticipantID <- tofo_neurocognitive_scores |>
   )
 #
 ### 11.1.2 Mixed effects LM: Sex + Event_name + 1|ParticipantID ----
-tofo_neurocognitive_lm_fixedSex_mixedParticipantID <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_lm_fixedSex_mixedParticipantID <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   filter(Event_Name %in% c("Baseline", "2 week", "8 week", "16 week", "40 week")) |> # keep only timepoints of interest
@@ -980,7 +980,7 @@ tofo_neurocognitive_lm_fixedSex_mixedParticipantID <- tofo_neurocognitive_scores
   ) 
 #
 ### 11.1.3 Mixed effects LM: Age + Event_name + 1|ParticipantID ----
-tofo_neurocognitive_lm_fixedAge_mixedParticipantID <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_lm_fixedAge_mixedParticipantID <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   filter(Event_Name %in% c("Baseline", "2 week", "8 week", "16 week", "40 week")) |> # keep only timepoints of interest
@@ -996,7 +996,7 @@ tofo_neurocognitive_lm_fixedAge_mixedParticipantID <- tofo_neurocognitive_scores
   ) 
 #
 ### 11.1.4 Mixed effects LM: Sex + Age + Event_name + 1|ParticipantID ----
-tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID <- tofo_neurocognitive_scores |> 
+tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   filter(Event_Name %in% c("Baseline", "2 week", "8 week", "16 week", "40 week")) |> # keep only timepoints of interest
@@ -1013,27 +1013,27 @@ tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID <- tofo_neurocognitive_sco
 #
 ## 11.2 Compare models ----
 ### 11.2.1 AIC/BIC ----
-tofo_neurocognitive_lm_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
-tofo_neurocognitive_lm_fixedSex_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
-tofo_neurocognitive_lm_fixedAge_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
-tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
+tofa_neuropsychological_lm_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
+tofa_neuropsychological_lm_fixedSex_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
+tofa_neuropsychological_lm_fixedAge_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
+tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID |> unnest(glanced) |> select(Score_name, AIC, BIC)
 #
 ### 11.2.2 Likelihood ratio tests ----
 anova(
-  tofo_neurocognitive_lm_mixedParticipantID |> pluck("fit", 1),
-  tofo_neurocognitive_lm_fixedSex_mixedParticipantID |> pluck("fit", 1),
+  tofa_neuropsychological_lm_mixedParticipantID |> pluck("fit", 1),
+  tofa_neuropsychological_lm_fixedSex_mixedParticipantID |> pluck("fit", 1),
   test="LRT"
 ) |>  # refitting model(s) with ML (instead of REML)
   tidy() # p.value = 0.959
 anova(
-  tofo_neurocognitive_lm_mixedParticipantID |> pluck("fit", 1),
-  tofo_neurocognitive_lm_fixedAge_mixedParticipantID |> pluck("fit", 1),
+  tofa_neuropsychological_lm_mixedParticipantID |> pluck("fit", 1),
+  tofa_neuropsychological_lm_fixedAge_mixedParticipantID |> pluck("fit", 1),
   test="LRT"
 ) |>  # refitting model(s) with ML (instead of REML)
   tidy() # p.value = 0.0184
 anova(
-  tofo_neurocognitive_lm_mixedParticipantID |> pluck("fit", 1),
-  tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID |> pluck("fit", 1),
+  tofa_neuropsychological_lm_mixedParticipantID |> pluck("fit", 1),
+  tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID |> pluck("fit", 1),
   test="LRT"
 ) |>  # refitting model(s) with ML (instead of REML)
   tidy() # p.value = 0.0621
@@ -1041,11 +1041,11 @@ anova(
 
 ## 11.3 Model results ----
 ### 11.3.1 Mixed ParticipantID with fixed SexAge -----
-tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID |> 
+tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID |> 
   unnest(tidied) |> 
   select(Score_name, group, term, estimate, p.value)
 # 
-tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID_results <- tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID |> 
+tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID_results <- tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID |> 
   unnest(c(tidied, glanced)) |>
   filter(str_detect(term, "Event_Name")) |>
   select(Assessment, Score_name, term, n_obs = nobs, estimate, conf.low, conf.high, statistic, p.value) |> 
@@ -1056,13 +1056,13 @@ tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID_results <- tofo_neurocogni
     .after = Score_name,
   )
 #
-tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID_results 
+tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID_results 
 #
 
 
 # 12 Mixed effects linear regression models (stratified) ----
 ## 12.1 By Sex ----
-lm_fixedAge_mixedParticipantID_by_Sex <- tofo_neurocognitive_scores |> 
+lm_fixedAge_mixedParticipantID_by_Sex <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   filter(Event_Name %in% c("Baseline", "2 week", "8 week", "16 week", "40 week")) |> # keep only timepoints of interest
@@ -1101,7 +1101,7 @@ tofa_baseline_age_groups <- tofa_visit_meta_data |>
   select(ParticipantID, Age_group)
 tofa_baseline_age_groups |> count(Age_group)
 #
-lm_fixedSex_mixedParticipantID_by_Age_group <- tofo_neurocognitive_scores |> 
+lm_fixedSex_mixedParticipantID_by_Age_group <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   inner_join(tofa_baseline_age_groups) |> # add age groups info
@@ -1133,7 +1133,7 @@ tofa_baseline_obesity <- tofa_baseline_obesity_file |>
   read_tsv()
 tofa_baseline_obesity |> count(baseline_obesity_status)
 #
-lm_fixedSexAge_mixedParticipantID_by_Obesity <- tofo_neurocognitive_scores |> 
+lm_fixedSexAge_mixedParticipantID_by_Obesity <- tofa_neuropsychological_scores |> 
   inner_join(tofa_participant_meta_data) |> 
   inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
   inner_join(tofa_baseline_obesity) |> # add Obesity info
@@ -1175,7 +1175,7 @@ tofa_covid_history |> filter(Event_Name == "40 week") |>
   count(COVID_event_hx) # 10 participants had covid by 2 weeks - small n but will test
 #
 lm_fixedSexAge_mixedParticipantID_by_COVID <- bind_rows( # NEEDS 2 DIFFERENT MODELS FOR 16/40 WEEKS
-  tofo_neurocognitive_scores |> 
+  tofa_neuropsychological_scores |> 
     inner_join(tofa_participant_meta_data) |> 
     inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
     inner_join(tofa_covid_history |> filter(Event_Name == "16 week") |> select(ParticipantID, COVID_event_hx)) |> # add covid info for 16 weeks
@@ -1191,7 +1191,7 @@ lm_fixedSexAge_mixedParticipantID_by_COVID <- bind_rows( # NEEDS 2 DIFFERENT MOD
       glanced = map(fit, broom.mixed::glance), # see ?broom.mixed:::glance.lme
       augmented = map(fit, broom.mixed::augment), # see ?broom.mixed:::augment.lme
     ),
-  tofo_neurocognitive_scores |> 
+  tofa_neuropsychological_scores |> 
     inner_join(tofa_participant_meta_data) |> 
     inner_join(tofa_visit_meta_data |> filter(Event_Name == "Baseline") |> select(ParticipantID, Age_Baseline = Age_years_at_visit)) |> 
     inner_join(tofa_covid_history |> filter(Event_Name == "40 week") |> select(ParticipantID, COVID_event_hx)) |> # add covid info for 40 weeks
@@ -1230,7 +1230,7 @@ lm_fixedSexAge_mixedParticipantID_by_COVID_results <- lm_fixedSexAge_mixedPartic
 # 13 Export LM results ----
 list(
   "LMM results" = list(
-    "Overall" = tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID_results,
+    "Overall" = tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID_results,
     "Sex" = lm_fixedAge_mixedParticipantID_by_Sex_results,
     "Age_group" = lm_fixedSex_mixedParticipantID_by_Age_group_results,
     "Obesity" = lm_fixedSexAge_mixedParticipantID_by_Obesity_results,
@@ -1263,7 +1263,7 @@ list(
 # 14 Forest plot(s) ----
 ## 14.1 kb_iq_composite_standard ----
 list(
-  "Overall" = tofo_neurocognitive_lm_fixedSexAge_mixedParticipantID_results,
+  "Overall" = tofa_neuropsychological_lm_fixedSexAge_mixedParticipantID_results,
   "Sex" = lm_fixedAge_mixedParticipantID_by_Sex_results,
   "Age_group" = lm_fixedSex_mixedParticipantID_by_Age_group_results,
   "Obesity" = lm_fixedSexAge_mixedParticipantID_by_Obesity_results,
