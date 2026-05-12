@@ -2,7 +2,7 @@
 
 ## Summary
 
-This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy”.  
+This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy of the JAK1/3 inhibitor tofacitinib in Down syndrome”.  
 
 This workflow analyzes differential abundance of plasma metabolite relative quantitation, measured by the UHPLC-mass spectrometry, 1) at baseline and 16 weeks of Tofacitinib (TOFA) treatment from participants in the clinical trial and 2) between baseline T21 samples from the trial to D21 samples from the HTP dataset, followed by comparison of treatment and T21 effects.
 

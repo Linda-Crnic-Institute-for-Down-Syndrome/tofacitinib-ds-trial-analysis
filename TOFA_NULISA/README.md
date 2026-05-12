@@ -2,7 +2,7 @@
 
 ## Summary
 
-This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy”.  
+This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy of the JAK1/3 inhibitor tofacitinib in Down syndrome”.  
 
 This workflow analyzes differential abundance of plasma proteins, measured by the NULISA assay, 1) at baseline and 16 weeks of Tofacitinib (TOFA) treatment from participants in the clinical trial and 2) between individuals with (T21) and without (D21) Down syndrome in the Human Trisome Project and compares these results.
 

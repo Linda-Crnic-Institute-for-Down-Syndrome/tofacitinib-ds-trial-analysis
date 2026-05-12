@@ -2,7 +2,7 @@
 
 ## Summary
 
-This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy”.  
+This analysis project accompanies the manuscript “A phase 2, open-label, single-arm clinical trial of the safety and efficacy of the JAK1/3 inhibitor tofacitinib in Down syndrome”.  
 
 This workflow analyzes absolute concentrations (µM) of select metabolites (kynurenine, quinolinic acid, tryptophan), measured in plasma from participants in the clinical trial and in the Human Trisome Project using ultra high performance liiquid chromatography mass spectrometry (UHPLC-MS).  
 
