@@ -134,8 +134,8 @@ The renv.lock files within each analysis project directory contains a full list 
 
 ## Citation & License
 If you use this code, please cite:  
-**Manuscript**
-A phase 2, open-label, single-arm clinical trial of the safety and efficacy A phase 2, open-label, single-arm clinical trial of the safety and efficacy.
+**Manuscript**  
+A phase 2, open-label, single-arm clinical trial of the safety and efficacy of the JAK1/3 inhibitor tofacitinib in Down syndrome.
 Authors, Journal, Year. DOI (UPDATE once available)
 
 **Code**  
